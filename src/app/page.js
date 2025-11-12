@@ -1,12 +1,18 @@
-"use client";
+// "use client";
 
 import AuthForm from "@/components/templates/AuthForm";
+import TourList from "@/components/templates/TourList";
+import serverFetch from "@/core/services/http";
 
-export default function Home() {
+export default async function Home() {
+  const data = await serverFetch("/tour", {}, { cache: "no-store" });
+
+
   return (
     <div>
-      <AuthForm />
       <p>This is turino</p>
+      <AuthForm />
+      <TourList tourData={data}/> 
     </div>
   );
 }
