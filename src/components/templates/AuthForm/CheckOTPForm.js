@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 import OtpInput from "react18-input-otp";
 
 import styles from "./CheckOTPForm.module.css";
@@ -25,18 +25,26 @@ function CheckOTPForm({
     event.preventDefault();
 
     if (isPending) return;
-    if (code.length !== 5) return toast.error("کد تایید باید ۵ رقمی باشد");
+    // TODO: Backend کد 6 رقمی را چک می‌کند
+    if (code.length !== 6) return toast.error("کد تایید باید ۶ رقمی باشد");
 
     mutate(
       { mobile, code },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
+          // بستن مودال و بازگشت به مرحله اول
           setStep(1);
           setIsOpen(false);
-          toast.success("وروود به حساب کاربری");
+          toast.success("ورود موفق! خوش آمدید");
         },
         onError: (error) => {
-          console.log(error);
+          const message =
+            error?.response?.data?.message ||
+            error?.data?.message ||
+            error?.message ||
+            error?.error ||
+            "کد تایید نامعتبر است";
+          toast.error(message);
         },
       }
     );
@@ -52,13 +60,13 @@ function CheckOTPForm({
             className={styles.input}
             value={code}
             onChange={handleChange}
-            numInputs={5}
+            numInputs={6} // TODO: Backend کد 6 رقمی را چک می‌کند
             inputStyle={{
               border: "1px solid rgba(0,0,0,0.25)",
               borderRadius: "6px",
               width: "50px",
               height: "45px",
-              margin: "0 8px",
+              margin: "0 3px",
             }}
           />
         </div>

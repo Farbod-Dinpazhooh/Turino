@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { useSentOtp } from "@/core/services/mutation";
 
 import ModalContainer from "../../partials/container/ModalContainer";
 import SendOTPForm from "./SendOTPForm";
 import CheckOTPForm from "./CheckOTPForm";
-import { useSentOtp } from "@/core/services/mutation";
+import { useGetUserData } from "@/core/services/queries";
+import Link from "next/link";
 
 function AuthForm() {
   const [step, setStep] = useState(1);
@@ -14,7 +16,10 @@ function AuthForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(0);
 
-  //Resend OTP
+  // ✅ همه hooks را ابتدا فراخوانی می‌کنیم
+  const { data } = useGetUserData();
+  const { data: userData } = data || {};
+
   const { mutate: resendOtp, isPending: isResending } = useSentOtp();
 
   useEffect(() => {
@@ -25,6 +30,15 @@ function AuthForm() {
     return () => clearInterval(id);
   }, [step, secondsLeft]);
 
+  // اگر کاربر لاگین کرده، شماره موبایلش را نمایش بده
+  if (userData) {
+    return (
+      <div>
+        <Link href="/profile">{userData.mobile}</Link>
+      </div>
+    );
+  }
+
   const handleResend = () => {
     if (isResending || secondsLeft > 0) return;
     if (!mobile) return;
@@ -34,8 +48,9 @@ function AuthForm() {
         onSuccess: (data) => {
           toast.success(data?.data?.message || "کد مجدد ارسال شد");
           const rawCode = data?.data?.code;
-          const fiveDigit = rawCode != null ? String(rawCode).slice(0, 5) : "";
-          if (fiveDigit) toast(fiveDigit);
+          // TODO: Backend کد 6 رقمی می‌فرستد و چک می‌کند - موقتاً کل کد را استفاده می‌کنیم
+          const codeString = rawCode != null ? String(rawCode) : "";
+          if (codeString) toast(codeString);
           setSecondsLeft(120);
         },
         onError: (error) => {

@@ -28,8 +28,9 @@ function SendOTPForm({ setStep, mobile, setMobile, setSecondsLeft }) {
         onSuccess: (data) => {
           toast.success(data?.data?.message);
           const rawCode = data?.data?.code;
-          const fiveDigit = rawCode != null ? String(rawCode).slice(0, 5) : "";
-          if (fiveDigit) toast(fiveDigit);
+          // TODO: Backend کد 6 رقمی می‌فرستد و چک می‌کند - موقتاً کل کد را استفاده می‌کنیم
+          const codeString = rawCode != null ? String(rawCode) : "";
+          if (codeString) toast(codeString);
           if (typeof setSecondsLeft === "function") setSecondsLeft(120);
           setStep(2);
         },
