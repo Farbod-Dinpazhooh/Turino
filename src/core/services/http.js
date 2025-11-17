@@ -11,14 +11,13 @@ const serverFetch = async (
   if (endPoint) url += endPoint;
   if (query) url += `?${QueryString.stringify(query)}`;
 
-  console.log(url);
-
   try {
     const res = await fetch(`${url}`, cache);
     const json = await res.json();
     return json;
   } catch (error) {
-    console.log(error);
+    // eslint-disable-next-line no-console
+    console.error("Server fetch error:", error);
     return false;
   }
 };
