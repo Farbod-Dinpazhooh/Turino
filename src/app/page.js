@@ -11,7 +11,7 @@ export default async function Home({ searchParams }) {
   const data = await serverFetch("/tour", params, { cache: "no-store" });
 
   return (
-    <div>
+    <div style={{ background: "#ffffff", minHeight: "100vh" }}>
       <p>This is turino</p>
       <AuthForm />
       <SearchForm />

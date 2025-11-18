@@ -1,0 +1,223 @@
+/* استایل‌های TourList - Mobile First */
+
+/* Container اصلی */
+.tour_list_container {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* عنوان "همه تورها" */
+.tour_list_title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1.5rem;
+  text-align: right;
+  padding: 0 1rem;
+}
+
+/* پیام خالی */
+.tour_list_empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Grid برای لیست تورها */
+.tour_list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+/* کارت تور */
+.tour_card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tour_card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* تصویر تور */
+.tour_image_wrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.tour_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.tour_card:hover .tour_image {
+  transform: scale(1.05);
+}
+
+/* محتوای کارت تور */
+.tour_content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 180px;
+}
+
+/* عنوان تور (مقصد) */
+.tour_title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  text-align: right;
+  line-height: 1.4;
+}
+
+/* جزئیات تور */
+.tour_details {
+  color: #666;
+  font-size: 0.95rem;
+  text-align: right;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 1.5rem;
+}
+
+/* Wrapper برای قیمت و دکمه */
+.tour_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Wrapper قیمت */
+.tour_price_wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  text-align: right;
+  flex: 1;
+  min-width: 0;
+}
+
+/* عدد قیمت (آبی) */
+.tour_price_number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1976d2;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* واحد قیمت (تومان) */
+.tour_price_unit {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Wrapper دکمه رزرو */
+.tour_button_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* دکمه رزرو */
+.tour_button {
+  padding: 0.75rem 2rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.tour_button:hover {
+  background-color: #218838;
+}
+
+.tour_button:active {
+  background-color: #1e7e34;
+}
+
+/* استایل‌های دسکتاپ */
+@media (min-width: 768px) {
+  .tour_list_title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+  }
+
+  .tour_list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+
+  .tour_image_wrapper {
+    height: 250px;
+  }
+
+  .tour_content {
+    padding: 2rem;
+    min-height: 200px;
+  }
+
+  .tour_title {
+    font-size: 1.75rem;
+  }
+
+  .tour_price_number {
+    font-size: 2rem;
+  }
+
+  .tour_footer {
+    margin-top: 1rem;
+  }
+}
+
+/* استایل‌های دسکتاپ بزرگ */
+@media (min-width: 1024px) {
+  .tour_list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .tour_image_wrapper {
+    height: 280px;
+  }
+}
+
+/* استایل‌های دسکتاپ خیلی بزرگ */
+@media (min-width: 1440px) {
+  .tour_list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
