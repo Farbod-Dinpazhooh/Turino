@@ -1,0 +1,244 @@
+.container {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.form_row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+}
+
+.input_wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.input_wrapper_with_icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: #666;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  padding-right: 3rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  text-align: right;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select:hover {
+  border-color: #bdbdbd;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.select:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.datepicker_wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.datepicker_wrapper .icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: #666;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.datepicker_container {
+  width: 100%;
+  position: relative;
+}
+
+/* استایل برای DatePicker از کتابخانه zaman */
+.datepicker_container :global(.zaman-datepicker),
+.datepicker_wrapper :global(.zaman-datepicker) {
+  width: 100%;
+  position: relative;
+}
+
+.datepicker_container :global(.zaman-datepicker input),
+.datepicker_container :global(.zaman-datepicker .zaman-input),
+.datepicker_container :global(input),
+.datepicker_wrapper :global(.zaman-datepicker input),
+.datepicker_wrapper :global(.zaman-datepicker .zaman-input),
+.datepicker_wrapper :global(input) {
+  width: 100% !important;
+  padding: 0.875rem 1rem !important;
+  padding-right: 3rem !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  background-color: #fff !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  transition: border-color 0.2s !important;
+  font-family: inherit !important;
+  box-sizing: border-box !important;
+}
+
+.datepicker_container :global(.zaman-datepicker input:hover),
+.datepicker_container :global(.zaman-datepicker .zaman-input:hover),
+.datepicker_container :global(input:hover),
+.datepicker_wrapper :global(.zaman-datepicker input:hover),
+.datepicker_wrapper :global(.zaman-datepicker .zaman-input:hover),
+.datepicker_wrapper :global(input:hover) {
+  border-color: #bdbdbd !important;
+}
+
+.datepicker_container :global(.zaman-datepicker input:focus),
+.datepicker_container :global(.zaman-datepicker .zaman-input:focus),
+.datepicker_container :global(input:focus),
+.datepicker_wrapper :global(.zaman-datepicker input:focus),
+.datepicker_wrapper :global(.zaman-datepicker .zaman-input:focus),
+.datepicker_wrapper :global(input:focus) {
+  outline: none !important;
+  border-color: #4caf50 !important;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1) !important;
+}
+
+.datepicker_container :global(.zaman-datepicker input::placeholder),
+.datepicker_container :global(.zaman-datepicker .zaman-input::placeholder),
+.datepicker_container :global(input::placeholder),
+.datepicker_wrapper :global(.zaman-datepicker input::placeholder),
+.datepicker_wrapper :global(.zaman-datepicker .zaman-input::placeholder),
+.datepicker_wrapper :global(input::placeholder) {
+  color: #999 !important;
+  text-align: center !important;
+  opacity: 1 !important;
+}
+
+/* اگر placeholder نمایش داده نمی‌شود، از data attribute استفاده می‌کنیم */
+.datepicker_container :global(.zaman-datepicker input[data-placeholder]),
+.datepicker_container :global(input[data-placeholder]),
+.datepicker_wrapper :global(.zaman-datepicker input[data-placeholder]),
+.datepicker_wrapper :global(input[data-placeholder]) {
+  color: #999 !important;
+  text-align: right !important;
+}
+
+/* استایل برای زمانی که input خالی است */
+.datepicker_container :global(.zaman-datepicker input:empty::before),
+.datepicker_container :global(input:empty::before) {
+  content: "تاریخ" !important;
+  color: #999 !important;
+}
+
+.datepicker_container :global(.zaman-datepicker input:disabled),
+.datepicker_container :global(.zaman-datepicker .zaman-input:disabled),
+.datepicker_container :global(input:disabled),
+.datepicker_wrapper :global(.zaman-datepicker input:disabled),
+.datepicker_wrapper :global(.zaman-datepicker .zaman-input:disabled),
+.datepicker_wrapper :global(input:disabled) {
+  background-color: #f5f5f5 !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+}
+
+.submit_button {
+  padding: 0.875rem 2rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  height: fit-content;
+  width: 100%;
+}
+
+.submit_button:hover {
+  background-color: #218838;
+}
+
+.submit_button:active {
+  background-color: #1e7e34;
+}
+
+.submit_button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* استایل‌های دسکتاپ برای search box */
+@media (min-width: 768px) {
+  .form {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .form_row {
+    flex: 1;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .datepicker_wrapper {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+
+  .submit_button {
+    width: auto;
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+}
