@@ -8,9 +8,13 @@
 
 /* عنوان "همه تورها" */
 .tour_list_title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #000;
+  font-family: "Yekan Bakh", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #000000;
   margin-bottom: 1.5rem;
   text-align: right;
   padding: 0 1rem;
@@ -50,9 +54,10 @@
 /* تصویر تور */
 .tour_image_wrapper {
   width: 100%;
-  height: 200px;
+  height: 159px;
   overflow: hidden;
   position: relative;
+  border-radius: 10px 10px 0 0;
 }
 
 .tour_image {
@@ -60,6 +65,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s;
+  border-radius: 10px 10px 0 0;
 }
 
 .tour_card:hover .tour_image {
@@ -77,22 +83,39 @@
 
 /* عنوان تور (مقصد) */
 .tour_title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #000;
+  font-family: "Yekan Bakh", Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #000000;
   margin: 0;
   text-align: right;
-  line-height: 1.4;
 }
 
 /* جزئیات تور */
 .tour_details {
-  color: #666;
-  font-size: 0.95rem;
+  font-family: "Yekan Bakh", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #282828;
+  opacity: 0.7;
   text-align: right;
-  line-height: 1.6;
   margin: 0;
   min-height: 1.5rem;
+}
+
+/* خط جداکننده */
+.tour_divider {
+  width: 100%;
+  height: 0px;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: none;
+  margin: 1rem 0;
 }
 
 /* Wrapper برای قیمت و دکمه */
@@ -117,20 +140,28 @@
 
 /* عدد قیمت (آبی) */
 .tour_price_number {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #1976d2;
+  font-family: "Vazir FD-WOL", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #009eca;
   margin: 0;
-  line-height: 1.2;
+  text-align: right;
 }
 
 /* واحد قیمت (تومان) */
 .tour_price_unit {
-  font-size: 1rem;
+  font-family: "Vazir FD-WOL", Arial, sans-serif;
+  font-size: 12px;
   font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
   color: #000;
   margin: 0;
-  line-height: 1.2;
+  text-align: right;
 }
 
 /* Wrapper دکمه رزرو */
@@ -142,19 +173,27 @@
 
 /* دکمه رزرو */
 .tour_button {
-  padding: 0.75rem 2rem;
+  width: 99px;
+  height: 29px;
+  padding: 12px;
   background-color: #28a745;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-sizing: border-box;
 }
 
 .tour_button:hover {
@@ -168,7 +207,7 @@
 /* استایل‌های دسکتاپ */
 @media (min-width: 768px) {
   .tour_list_title {
-    font-size: 2rem;
+    font-size: 20px;
     margin-bottom: 2rem;
     padding: 0 2rem;
   }
@@ -181,7 +220,7 @@
   }
 
   .tour_image_wrapper {
-    height: 250px;
+    height: 159px;
   }
 
   .tour_content {
@@ -190,11 +229,15 @@
   }
 
   .tour_title {
-    font-size: 1.75rem;
+    font-size: 22px;
   }
 
   .tour_price_number {
-    font-size: 2rem;
+    font-size: 16px;
+  }
+
+  .tour_price_unit {
+    font-size: 12px;
   }
 
   .tour_footer {
@@ -205,19 +248,11 @@
 /* استایل‌های دسکتاپ بزرگ */
 @media (min-width: 1024px) {
   .tour_list {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
   }
 
   .tour_image_wrapper {
-    height: 280px;
+    height: 159px;
   }
 }
-
-/* استایل‌های دسکتاپ خیلی بزرگ */
-@media (min-width: 1440px) {
-  .tour_list {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-

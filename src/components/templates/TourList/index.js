@@ -177,6 +177,7 @@ function TourList({ tourData }) {
               <div className={styles.tour_details}>
                 {buildTourDetails(tour) || "جزئیات تور در دسترس نیست"}
               </div>
+              <div className={styles.tour_divider}></div>
               <div className={styles.tour_footer}>
                 {tour?.price ? (
                   <div className={styles.tour_price_wrapper}>
