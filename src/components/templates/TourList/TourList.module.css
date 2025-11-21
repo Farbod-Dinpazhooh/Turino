@@ -3,7 +3,10 @@
 /* Container اصلی */
 .tour_list_container {
   width: 100%;
-  margin-top: 2rem;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+  position: relative;
 }
 
 /* عنوان "همه تورها" */
@@ -17,7 +20,10 @@
   color: #000000;
   margin-bottom: 1.5rem;
   text-align: right;
-  padding: 0 1rem;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* پیام خالی */
@@ -31,10 +37,14 @@
 /* Grid برای لیست تورها */
 .tour_list {
   width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 0 1rem;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 /* کارت تور */
@@ -44,6 +54,9 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .tour_card:hover {

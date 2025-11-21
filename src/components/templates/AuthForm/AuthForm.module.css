@@ -1,0 +1,38 @@
+/* استایل‌های AuthForm */
+
+.auth_container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auth_button {
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.auth_button:hover {
+  background-color: #218838;
+}
+
+.user_mobile {
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s;
+}
+
+.user_mobile:hover {
+  color: #28a745;
+}
+

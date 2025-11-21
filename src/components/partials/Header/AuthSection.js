@@ -1,26 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { useSentOtp } from "@/core/services/mutation";
-
-import ModalContainer from "../../partials/container/ModalContainer";
-import SendOTPForm from "./SendOTPForm";
-import CheckOTPForm from "./CheckOTPForm";
 import { useGetUserData } from "@/core/services/queries";
 import Link from "next/link";
-import styles from "./AuthForm.module.css";
+import Image from "next/image";
+import ModalContainer from "../container/ModalContainer";
+import SendOTPForm from "../../templates/AuthForm/SendOTPForm";
+import CheckOTPForm from "../../templates/AuthForm/CheckOTPForm";
+import styles from "./Header.module.css";
 
-function AuthForm() {
+function AuthSection() {
   const [step, setStep] = useState(1);
   const [mobile, setMobile] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(0);
 
-  // ✅ همه hooks را ابتدا فراخوانی می‌کنیم
+  // بررسی وضعیت کاربر
   const { data } = useGetUserData();
   const { data: userData } = data || {};
-
   const { mutate: resendOtp, isPending: isResending } = useSentOtp();
 
   useEffect(() => {
@@ -34,11 +33,9 @@ function AuthForm() {
   // اگر کاربر لاگین کرده، شماره موبایلش را نمایش بده
   if (userData) {
     return (
-      <div className={styles.auth_container}>
-        <Link href="/profile" className={styles.user_mobile}>
-          {userData.mobile}
-        </Link>
-      </div>
+      <Link href="/profile" className={styles.user_mobile}>
+        {userData.mobile}
+      </Link>
     );
   }
 
@@ -51,7 +48,6 @@ function AuthForm() {
         onSuccess: (data) => {
           toast.success(data?.data?.message || "کد مجدد ارسال شد");
           const rawCode = data?.data?.code;
-          // TODO: Backend کد 6 رقمی می‌فرستد و چک می‌کند - موقتاً کل کد را استفاده می‌کنیم
           const codeString = rawCode != null ? String(rawCode) : "";
           if (codeString) toast(codeString);
           setSecondsLeft(120);
@@ -66,12 +62,25 @@ function AuthForm() {
   };
 
   return (
-    <div className={styles.auth_container}>
+    <>
       <button
         onClick={() => setIsOpen(true)}
         className={styles.auth_button}
       >
         ورود | ثبت نام
+      </button>
+      <button
+        onClick={() => setIsOpen(true)}
+        className={styles.auth_icon_button}
+        aria-label="ورود | ثبت نام"
+      >
+        <Image
+          src="/login.svg"
+          alt="ورود | ثبت نام"
+          width={40}
+          height={40}
+          className={styles.auth_icon}
+        />
       </button>
       {step === 1 && (
         <ModalContainer
@@ -104,8 +113,9 @@ function AuthForm() {
           />
         </ModalContainer>
       )}
-    </div>
+    </>
   );
 }
 
-export default AuthForm;
+export default AuthSection;
+

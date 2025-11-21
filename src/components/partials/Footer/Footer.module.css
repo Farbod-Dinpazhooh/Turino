@@ -1,0 +1,290 @@
+/* استایل‌های Footer - Mobile First */
+
+.footer {
+  width: 100%;
+  max-width: 100vw;
+  background-color: #fff;
+  margin-top: 3rem;
+  padding: 2rem 0 0 0;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: min(1200px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 0 1rem;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* بخش بالا: ستون‌های تورینو و خدمات مشتریان */
+.footer_top {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* بخش پایین: لوگو و بج‌ها */
+.footer_bottom_section {
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* ستون چپ: لوگوی تورینو */
+.footer_left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.logo_section {
+  margin-bottom: 1rem;
+}
+
+.logo_image {
+  width: 100px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.support_phone {
+  font-family: "Yekan Bakh", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #000000;
+  text-align: right;
+}
+
+/* ستون راست: بج‌ها */
+.badges_section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 0;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: start;
+  max-width: fit-content;
+}
+
+.badge_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  text-align: center;
+  max-width: 60px;
+  padding: 0;
+}
+
+/* قرار دادن لوگوی پنجم در ردیف دوم، ستون راست */
+.badge_item:nth-child(5) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.badge_logo {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.badge_image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.badge_qr {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.qr_image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.badge_text {
+  font-size: 0.45rem;
+  color: #666;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.badge_text p {
+  margin: 0;
+  word-break: break-word;
+}
+
+.badge_text a {
+  color: #1976d2;
+  text-decoration: none;
+  font-size: 0.45rem;
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.badge_text a:hover {
+  text-decoration: underline;
+}
+
+/* ستون‌های وسط و راست */
+.footer_section {
+  width: 100%;
+}
+
+.footer_title {
+  font-family: "Yekan Bakh", Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #282828;
+  margin-bottom: 1rem;
+  text-align: right;
+}
+
+.footer_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer_link {
+  font-family: "Yekan Bakh", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #282828;
+  text-decoration: none;
+  transition: color 0.2s;
+  text-align: right;
+  display: block;
+}
+
+.footer_link:hover {
+  color: #28a745;
+}
+
+/* پایین Footer: خط جداکننده و کپی‌رایت */
+.footer_copyright {
+  width: 100%;
+  padding-top: 1.5rem;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #d3d3d3;
+  margin-bottom: 1rem;
+}
+
+.copyright {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.copyright p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+/* استایل‌های موبایل */
+@media (max-width: 767px) {
+  .footer_top {
+    gap: 1.5rem;
+  }
+  
+  .footer_section {
+    flex: 1;
+    min-width: 140px;
+  }
+}
+
+/* استایل‌های دسکتاپ */
+@media (min-width: 768px) {
+  .footer {
+    padding: 3rem 0 0 0;
+  }
+
+  .container {
+    padding: 0 2rem;
+  }
+
+  .footer_top {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  .footer_section {
+    width: auto;
+    min-width: 150px;
+  }
+
+  .footer_bottom_section {
+    flex-direction: row;
+    margin-bottom: 2rem;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  .badges_section {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 0;
+  }
+
+  .badge_item {
+    align-items: flex-start;
+    text-align: right;
+  }
+
+  .badge_text {
+    text-align: right;
+  }
+}
+
+@media (min-width: 1024px) {
+  .badges_section {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 0;
+  }
+}
+
+

@@ -163,7 +163,7 @@ function TourList({ tourData }) {
     <div className={styles.tour_list_container}>
       <h1 className={styles.tour_list_title}>همه تورها</h1>
       <main className={styles.tour_list}>
-        {tourData?.map((tour) => (
+      {tourData?.map((tour) => (
           <section key={tour?.id} className={styles.tour_card}>
             <div className={styles.tour_image_wrapper}>
               <img
@@ -203,9 +203,9 @@ function TourList({ tourData }) {
                 </div>
               </div>
             </div>
-          </section>
-        ))}
-      </main>
+        </section>
+      ))}
+    </main>
     </div>
   );
 }
