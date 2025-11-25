@@ -28,7 +28,6 @@
 .logo {
   display: flex;
   align-items: center;
-  order: 1;
 }
 
 /* مخفی کردن لوگو در موبایل */
@@ -325,6 +324,7 @@
 
   .logo {
     display: flex;
+    order: 0;
   }
 
   .mobile_menu_wrapper {
@@ -334,6 +334,7 @@
   .nav {
     display: block;
     width: auto;
+    order: 1;
   }
 
   .nav_list {
@@ -343,7 +344,7 @@
 
   .auth_section {
     display: flex;
-    order: 3;
+    order: 2;
   }
 
   .auth_button {

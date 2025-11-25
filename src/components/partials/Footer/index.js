@@ -66,6 +66,20 @@ function Footer() {
 
         {/* بخش پایین: لوگو و اطلاعات و بج‌ها */}
         <div className={styles.footer_bottom_section}>
+          <div className={styles.footer_left}>
+            <div className={styles.logo_section}>
+              <Image
+                src="/Torino.svg"
+                alt="Torino"
+                width={100}
+                height={30}
+                className={styles.logo_image}
+              />
+            </div>
+            <div className={styles.support_phone}>
+              <span>تلفن پشتیبانی: ۰۲۱-۸۵۷۴</span>
+            </div>
+          </div>
           <div className={styles.badges_section}>
             <div className={styles.badge_item}>
               <div className={styles.badge_logo}>
@@ -143,20 +157,6 @@ function Footer() {
               <div className={styles.badge_text}>
                 <p>سازمان هواپیمایی کشوری</p>
               </div>
-            </div>
-          </div>
-          <div className={styles.footer_left}>
-            <div className={styles.logo_section}>
-              <Image
-                src="/Torino.svg"
-                alt="Torino"
-                width={100}
-                height={30}
-                className={styles.logo_image}
-              />
-            </div>
-            <div className={styles.support_phone}>
-              <span>تلفن پشتیبانی: ۰۲۱-۸۵۷۴</span>
             </div>
           </div>
         </div>

@@ -227,10 +227,27 @@
   .footer_top {
     gap: 1.5rem;
   }
-  
+
   .footer_section {
     flex: 1;
     min-width: 140px;
+  }
+
+  .footer_bottom_section {
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+  }
+
+  .footer_left {
+    align-items: flex-end;
+    order: 2;
+  }
+
+  .badges_section {
+    justify-content: flex-start;
+    align-items: flex-start;
+    order: 1;
   }
 }
 
@@ -242,13 +259,21 @@
 
   .container {
     padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
   }
 
   .footer_top {
     flex-direction: row;
     justify-content: flex-end;
-    gap: 3rem;
+    gap: 4rem;
     align-items: flex-start;
+    margin-bottom: 0;
+    width: 100%;
+    grid-column: 1;
+    grid-row: 1;
   }
 
   .footer_section {
@@ -257,34 +282,72 @@
   }
 
   .footer_bottom_section {
-    flex-direction: row;
-    margin-bottom: 2rem;
-    gap: 3rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 0;
+    gap: 0;
     align-items: flex-start;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .footer_left {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
   }
 
   .badges_section {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 1.5rem;
+    max-width: fit-content;
+    flex-wrap: nowrap;
   }
 
   .badge_item {
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
+    gap: 0.5rem;
     text-align: right;
+    max-width: 120px;
+    min-width: 100px;
+    flex-shrink: 0;
+  }
+
+  .badge_logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .badge_qr {
+    width: 60px;
+    height: 60px;
   }
 
   .badge_text {
+    font-size: 0.7rem;
     text-align: right;
+    line-height: 1.3;
+  }
+
+  .badge_text p {
+    margin: 0;
+  }
+
+  .badge_text a {
+    font-size: 0.7rem;
+    margin-top: 0.25rem;
+  }
+
+  .footer_copyright {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 }
-
-@media (min-width: 1024px) {
-  .badges_section {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    gap: 0;
-  }
-}
-
-
