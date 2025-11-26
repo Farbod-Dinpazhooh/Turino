@@ -1,6 +1,8 @@
 import serverFetch from "@/core/services/http";
 import ReserveButton from "@/components/atoms/ReserveButton";
+import BackButton from "@/components/atoms/BackButton";
 import Image from "next/image";
+import TourInfoSection from "@/components/templates/TourInfoSection";
 import styles from "./page.module.css";
 
 async function TourDetails({ params }) {
@@ -61,56 +63,75 @@ async function TourDetails({ params }) {
   const formattedPrice =
     price > 0 ? new Intl.NumberFormat("fa-IR").format(price) : "0";
 
+  // دریافت اطلاعات مبدا و تاریخ‌ها
+  const origin =
+    data?.origin || data?.departure || data?.from || data?.departureCity || "";
+  const startDate = data?.startDate || data?.departureDate || "";
+  const endDate = data?.endDate || data?.returnDate || "";
+
   return (
-    <div className={styles.container}>
-      {/* تصویر تور */}
-      <div className={styles.image_container}>
-        <Image
-          src={tourImage}
-          alt={data.title || "تور"}
-          fill
-          className={styles.image}
-          priority
-          sizes="100vw"
-        />
-      </div>
-
-      {/* عنوان و مدت زمان */}
-      <div className={styles.header}>
-        <h1 className={styles.title}>{data.title || "تور"}</h1>
-        {duration > 0 ? (
-          <div className={styles.duration}>
-            {days} روز و {nights} شب
-          </div>
-        ) : (
-          <div className={styles.duration}>مدت زمان مشخص نشده</div>
-        )}
-      </div>
-
-      {/* ویژگی‌های تور */}
-      <div className={styles.features}>
-        {features.map((feature, index) => (
-          <div key={index} className={styles.feature_item}>
-            <Image
-              src={feature.icon}
-              alt={feature.label}
-              width={20}
-              height={20}
-              className={styles.feature_icon}
-            />
-            <span className={styles.feature_label}>{feature.label}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* قیمت و دکمه رزرو */}
-      <div className={styles.footer}>
-        <div className={styles.price_section}>
-          <div className={styles.price}>{formattedPrice}</div>
-          <div className={styles.currency}>تومان</div>
+    <div className={styles.page_wrapper}>
+      <div className={styles.container}>
+        <BackButton />
+        {/* تصویر تور */}
+        <div className={styles.image_container}>
+          <Image
+            src={tourImage}
+            alt={data.title || "تور"}
+            fill
+            className={styles.image}
+            priority
+            sizes="100vw"
+          />
         </div>
-        <div className={styles.button_section}>
-          <ReserveButton id={id} />
+
+        {/* اطلاعات مبدا و تاریخ‌ها - فقط برای دسکتاپ */}
+        <TourInfoSection
+          origin={origin}
+          startDate={startDate}
+          endDate={endDate}
+        />
+
+        {/* عنوان، مدت زمان، ویژگی‌های تور، قیمت و دکمه رزرو */}
+        <div className={styles.content_section}>
+          {/* عنوان و مدت زمان */}
+          <div className={styles.header}>
+            <h1 className={styles.title}>{data.title || "تور"}</h1>
+            {duration > 0 ? (
+              <div className={styles.duration}>
+                {days} روز و {nights} شب
+              </div>
+            ) : (
+              <div className={styles.duration}>مدت زمان مشخص نشده</div>
+            )}
+          </div>
+
+          {/* ویژگی‌های تور */}
+          <div className={styles.features}>
+            {features.map((feature, index) => (
+              <div key={index} className={styles.feature_item}>
+                <Image
+                  src={feature.icon}
+                  alt={feature.label}
+                  width={20}
+                  height={20}
+                  className={styles.feature_icon}
+                />
+                <span className={styles.feature_label}>{feature.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* قیمت و دکمه رزرو */}
+          <div className={styles.footer}>
+            <div className={styles.price_section}>
+              <div className={styles.price}>{formattedPrice}</div>
+              <div className={styles.currency}>تومان</div>
+            </div>
+            <div className={styles.button_section}>
+              <ReserveButton id={id} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

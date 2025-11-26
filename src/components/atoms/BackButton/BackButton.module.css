@@ -1,0 +1,48 @@
+.back_button {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.back_button:hover {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.back_button:active {
+  transform: scale(0.95);
+}
+
+.back_button svg {
+  color: #000000;
+  width: 18px;
+  height: 18px;
+}
+
+/* استایل‌های دسکتاپ */
+@media (min-width: 768px) {
+  .back_button {
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .back_button svg {
+    width: 24px;
+    height: 24px;
+  }
+}
