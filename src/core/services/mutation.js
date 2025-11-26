@@ -27,3 +27,18 @@ export const useCheckOtp = () => {
 
   return useMutation({ mutationFn, onSuccess });
 };
+
+export const useAddToBasket = () => {
+  const mutationFn = (data) => {
+    // پشتیبانی از object با tourId یا id، یا string مستقیم
+    const tourId = data?.tourId || data?.id || data;
+
+    if (!tourId) {
+      return Promise.reject(new Error("شناسه تور یافت نشد"));
+    }
+
+    return api.put(`/basket/${tourId}`);
+  };
+
+  return useMutation({ mutationFn });
+};

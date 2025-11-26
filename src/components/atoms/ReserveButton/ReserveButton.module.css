@@ -1,0 +1,36 @@
+.button {
+  width: 154px;
+  height: 42px;
+  border-radius: 10px;
+  padding: 8px;
+  gap: 8px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  font-family: "Yekan Bakh", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  box-sizing: border-box;
+}
+
+.button:hover {
+  background-color: #218838;
+}
+
+.button:active {
+  background-color: #1e7e34;
+}
+
+.button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.container {
+  display: inline-block;
+}
