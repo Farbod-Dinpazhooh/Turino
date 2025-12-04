@@ -38,8 +38,8 @@
 
 .info_divider {
   width: 1px;
-  height: 40px;
-  background-color: #e0e0e0;
+  height: 60px;
+  background-color: rgba(0, 0, 0, 0.30);
   flex-shrink: 0;
 }
 
@@ -55,8 +55,8 @@
     margin-top: 1rem;
     grid-column: 1;
     grid-row: 2;
-    padding-right: 30px;
-    margin-right: 110px;
+    /* padding-right: 20px; */
+    margin-right: 10px;
     justify-self: start;
     width: 397px;
   }

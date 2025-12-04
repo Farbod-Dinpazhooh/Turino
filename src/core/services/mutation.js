@@ -42,3 +42,30 @@ export const useAddToBasket = () => {
 
   return useMutation({ mutationFn });
 };
+
+// ایجاد سفارش با اطلاعات کاربر
+export const useCreateOrder = () => {
+  const queryClient = useQueryClient();
+
+  const mutationFn = (data) => api.post("/order", data);
+
+  const onSuccess = () => {
+    // بعد از ایجاد سفارش، سبد خرید را به‌روزرسانی کن
+    queryClient.invalidateQueries({ queryKey: ["user-basket"] });
+  };
+
+  return useMutation({ mutationFn, onSuccess });
+};
+
+export const useUpdateBankAccount = () => {
+  const queryClient = useQueryClient();
+
+  const mutationFn = (data) => api.put("/user/profile", data);
+
+  const onSuccess = () => {
+    // به‌روزرسانی اطلاعات کاربر بعد از ذخیره موفق
+    queryClient.invalidateQueries({ queryKey: ["user-data"] });
+  };
+
+  return useMutation({ mutationFn, onSuccess });
+};
