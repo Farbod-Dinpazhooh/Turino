@@ -30,20 +30,18 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (
-      (error.response.status === 401 || error.response.status === 403) &&
-      !originalRequest._retry
-    ) {
+    if (error?.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       const res = await getNewTokens();
       if (res?.status === 200) {
         setCookie("accessToken", res?.data?.accessToken, 30);
         return api(originalRequest);
+      } else {
+        // فقط اگر refresh token هم کار نکرد، کاربر را logout کن
+        setCookie("accessToken", "", 0);
+        setCookie("refreshToken", "", 0);
       }
-    } else {
-      setCookie("accessToken", "", 0);
-      setCookie("refreshToken", "", 0);
     }
 
     return Promise.reject(error?.response?.data);
@@ -57,7 +55,7 @@ const getNewTokens = async () => {
   if (!refreshToken) return;
 
   try {
-    const response = axios.post(`${BASE_URL}/auth/refresh-token`, {
+    const response = await axios.post(`${BASE_URL}/auth/refresh-token`, {
       refreshToken,
     });
     return response;

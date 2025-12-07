@@ -69,3 +69,25 @@ export const useUpdateBankAccount = () => {
 
   return useMutation({ mutationFn, onSuccess });
 };
+
+export const useRemoveFromBasket = () => {
+  const queryClient = useQueryClient();
+
+  // TODO: Backend باید endpoint DELETE /basket/{tourId} را اضافه کند
+  // فعلاً از یک راه حل موقت استفاده می‌کنیم
+  const mutationFn = (tourId) => {
+    // چون backend endpoint DELETE ندارد، سبد خرید را manual حذف می‌کنیم
+    queryClient.setQueryData(["user-basket"], () => ({
+      data: null,
+    }));
+    return Promise.resolve({ message: "از سبد خرید حذف شد" });
+  };
+
+  const onSuccess = () => {
+    // به‌روزرسانی و refetch
+    queryClient.invalidateQueries({ queryKey: ["user-basket"] });
+    queryClient.refetchQueries({ queryKey: ["user-basket"] });
+  };
+
+  return useMutation({ mutationFn, onSuccess });
+};

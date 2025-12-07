@@ -1,0 +1,174 @@
+/* Mobile First - ابتدا برای موبایل */
+
+.transactionsTableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transactionsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.transactionsTable thead {
+  background-color: #f5f5f5;
+}
+
+.transactionsTable th {
+  padding: 12px 8px;
+  text-align: right;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 12px;
+}
+
+.transactionsTable tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s;
+}
+
+.transactionsTable tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.transactionsTable tbody tr:last-child {
+  border-bottom: none;
+}
+
+.transactionsTable td {
+  padding: 12px 8px;
+  text-align: right;
+  color: #333;
+  font-size: 12px;
+}
+
+/* برای موبایل - نمایش به صورت کارت */
+@media (max-width: 768px) {
+  .transactionsTableWrapper {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .transactionsTable {
+    display: block;
+  }
+
+  .transactionsTable thead {
+    display: none;
+  }
+
+  .transactionsTable tbody {
+    display: block;
+  }
+
+  .transactionsTable tbody tr {
+    display: block;
+    margin-bottom: 12px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .transactionsTable tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .transactionsTable tbody td {
+    display: block;
+    padding: 8px 0;
+    text-align: right;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .transactionsTable tbody td:last-child {
+    border-bottom: none;
+  }
+
+  .transactionsTable tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #666;
+    display: inline-block;
+    min-width: 100px;
+    margin-left: 8px;
+  }
+
+  .transactionsTable tbody td:first-child::before {
+    content: "شماره سفارش:";
+  }
+
+  .transactionsTable tbody td:nth-child(2)::before {
+    content: "مبلغ (تومان):";
+  }
+
+  .transactionsTable tbody td:nth-child(3)::before {
+    content: "تاریخ و ساعت:";
+  }
+}
+
+/* Desktop - نمایش به صورت جدول */
+@media (min-width: 769px) {
+  .transactionsTable {
+    font-size: 14px;
+  }
+
+  .transactionsTable th {
+    padding: 16px 12px;
+    font-size: 14px;
+  }
+
+  .transactionsTable td {
+    padding: 16px 12px;
+    font-size: 14px;
+  }
+
+  /* نمایش ستون نوع تراکنش فقط در desktop */
+  .desktopOnly {
+    display: table-cell;
+  }
+}
+
+/* مخفی کردن ستون نوع تراکنش در موبایل */
+.desktopOnly {
+  display: none;
+}
+
+/* Empty State */
+.emptyTransactions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.emptyIcon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.emptyTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.emptyMessage {
+  color: #666;
+  max-width: 400px;
+  line-height: 1.6;
+  font-size: 14px;
+}

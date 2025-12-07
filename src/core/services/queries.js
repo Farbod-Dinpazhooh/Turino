@@ -61,9 +61,35 @@ export const useGetUserBasket = () => {
   return useQuery({ queryFn, queryKey });
 };
 
-export const useGetUserTours = () => {
+export const useGetUserOrders = () => {
   const queryFn = () => api.get("/user/tours");
-  const queryKey = ["user-tours"];
-  
-  return useQuery({ queryFn, queryKey });
+  const queryKey = ["user-orders"];
+
+  const hasToken =
+    typeof window !== "undefined" ? !!getCookie("accessToken") : false;
+
+  return useQuery({
+    queryFn,
+    queryKey,
+    enabled: hasToken,
+    retry: false,
+    staleTime: 1000 * 60 * 5, // 5 دقیقه
+  });
+};
+
+// Hook برای دریافت تراکنش‌های کاربر
+export const useGetUserTransactions = () => {
+  const queryFn = () => api.get("/user/transactions");
+  const queryKey = ["user-transactions"];
+
+  const hasToken =
+    typeof window !== "undefined" ? !!getCookie("accessToken") : false;
+
+  return useQuery({
+    queryFn,
+    queryKey,
+    enabled: hasToken,
+    retry: false,
+    staleTime: 1000 * 60 * 5, // 5 دقیقه
+  });
 };

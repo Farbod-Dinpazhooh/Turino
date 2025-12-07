@@ -1,11 +1,3 @@
-import React from 'react'
+import MyToursPage from "@/components/templates/MyToursPage";
 
-function page() {
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default page
+export default MyToursPage;
