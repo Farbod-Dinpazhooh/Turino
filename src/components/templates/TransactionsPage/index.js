@@ -2,17 +2,26 @@
 
 import { useGetUserTransactions } from "@/core/services/queries";
 import TransactionsList from "../TransactionsList";
+import InternetError from "../InternetError";
+import { useOnlineStatus } from "@/core/hooks/useOnlineStatus";
 import styles from "./TransactionsPage.module.css";
 
 function TransactionsPage() {
+  const isOnline = useOnlineStatus();
   const {
     data: transactionsResponse,
     isLoading,
     error,
     isError,
+    refetch,
   } = useGetUserTransactions();
 
   const transactions = transactionsResponse?.data || [];
+
+  // بررسی خطای اینترنت
+  if (!isOnline || error?.isInternetError) {
+    return <InternetError onRetry={() => refetch()} />;
+  }
 
   if (isLoading) {
     return (

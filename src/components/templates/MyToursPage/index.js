@@ -2,17 +2,26 @@
 
 import { useGetUserOrders } from "@/core/services/queries";
 import ToursList from "../ToursList";
+import InternetError from "../InternetError";
+import { useOnlineStatus } from "@/core/hooks/useOnlineStatus";
 
 function MyToursPage() {
+  const isOnline = useOnlineStatus();
   const {
     data: ordersResponse,
     isLoading,
     error,
     isError,
+    refetch,
   } = useGetUserOrders();
 
   // فقط تورهای خریداری شده
   const purchasedTours = ordersResponse?.data || [];
+
+  // بررسی خطای اینترنت
+  if (!isOnline || error?.isInternetError) {
+    return <InternetError onRetry={() => refetch()} />;
+  }
 
   if (isLoading) {
     return (

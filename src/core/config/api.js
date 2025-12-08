@@ -30,6 +30,15 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
+    // بررسی خطای اینترنت
+    if (!navigator.onLine || error.message === "Network Error" || error.code === "ERR_NETWORK") {
+      const internetError = {
+        message: "اتصال به اینترنت قطع شده است",
+        isInternetError: true,
+      };
+      return Promise.reject(internetError);
+    }
+
     if (error?.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
@@ -44,7 +53,7 @@ api.interceptors.response.use(
       }
     }
 
-    return Promise.reject(error?.response?.data);
+    return Promise.reject(error?.response?.data || error);
   }
 );
 
