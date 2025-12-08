@@ -36,3 +36,26 @@
   color: #28a745;
 }
 
+/* Mobile Menu */
+.mobileMenu {
+  display: block;
+}
+
+.desktopLink {
+  display: none !important;
+}
+
+/* Desktop Link */
+@media (min-width: 769px) {
+  .mobileMenu {
+    display: none !important;
+  }
+
+  .desktopLink {
+    display: block !important;
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: 600;
+  }
+}
+

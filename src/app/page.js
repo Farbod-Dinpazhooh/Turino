@@ -2,6 +2,8 @@
 
 import TourList from "@/components/templates/TourList";
 import SearchForm from "@/components/templates/SearchForm";
+import HeroBanner from "@/components/templates/HeroBanner";
+import HeroTitle from "@/components/templates/HeroTitle";
 import serverFetch from "@/core/services/http";
 
 export default async function Home({ searchParams }) {
@@ -10,12 +12,22 @@ export default async function Home({ searchParams }) {
   const data = await serverFetch("/tour", params, { cache: "no-store" });
 
   return (
-
-    
-    <div style={{ background: "#ffffff", minHeight: "100vh", width: "100%", maxWidth: "100%", overflowX: "hidden", padding: "0 1rem", boxSizing: "border-box" }}>
-      <p>This is turino</p>
-      <SearchForm />
-      <TourList tourData={data} />
+    <div
+      style={{
+        background: "#ffffff",
+        minHeight: "100vh",
+        width: "100%",
+        maxWidth: "100%",
+        overflowX: "hidden",
+        boxSizing: "border-box",
+      }}
+    >
+      <HeroBanner />
+      <HeroTitle />
+      <div style={{ padding: "0 1rem", boxSizing: "border-box" }}>
+        <SearchForm />
+        <TourList tourData={data} />
+      </div>
     </div>
   );
 }

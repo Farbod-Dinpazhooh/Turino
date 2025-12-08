@@ -1,0 +1,36 @@
+.titleContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 1rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.torinoText {
+  color: #28a745;
+  font-weight: 700;
+}
+
+.restText {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .title {
+    font-size: 18px;
+  }
+
+  .titleContainer {
+    padding: 16px 1rem;
+  }
+}
+

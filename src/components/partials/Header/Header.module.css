@@ -9,6 +9,7 @@
   top: 0;
   z-index: 100;
   overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .container {
@@ -104,6 +105,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  z-index: 10001;
 }
 
 /* منوی موبایل */
@@ -312,6 +315,29 @@
 
 .user_mobile:hover {
   color: #28a745;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  display: block;
+}
+
+.desktopLink {
+  display: none !important;
+}
+
+/* Desktop Link */
+@media (min-width: 769px) {
+  .mobileMenu {
+    display: none !important;
+  }
+
+  .desktopLink {
+    display: block !important;
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: 600;
+  }
 }
 
 /* استایل‌های دسکتاپ */

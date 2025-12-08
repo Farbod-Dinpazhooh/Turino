@@ -1,0 +1,120 @@
+/* Mobile First */
+.userMenuContainer {
+  position: relative;
+  z-index: 10000;
+}
+
+.mobileButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #4caf50;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mobileNumber {
+  color: #4caf50;
+}
+
+.profileIcon {
+  filter: brightness(0) saturate(100%) invert(58%) sepia(96%) saturate(500%)
+    hue-rotate(80deg) brightness(95%) contrast(85%);
+}
+
+.chevron {
+  font-size: 10px;
+  color: #4caf50;
+  transition: transform 0.3s;
+}
+
+.userMenuContainer[data-open="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: fixed;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 250px;
+  max-width: calc(100vw - 32px);
+  z-index: 999999;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  width: 100%;
+  text-align: right;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.menuItem:last-child {
+  border-bottom: none;
+}
+
+.menuItem:hover {
+  background-color: #f9f9f9;
+}
+
+.menuItem:first-child {
+  color: #666;
+  cursor: default;
+}
+
+.menuItem:first-child:hover {
+  background-color: transparent;
+}
+
+.menuIcon {
+  filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%)
+    hue-rotate(0deg) brightness(95%) contrast(95%);
+  flex-shrink: 0;
+}
+
+.menuText {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.logoutItem {
+  color: #d32f2f;
+}
+
+.logoutItem:hover {
+  background-color: #ffebee;
+}
+
+.logoutIcon {
+  flex-shrink: 0;
+  stroke: #d32f2f;
+}
+
+.logoutText {
+  font-size: 14px;
+  font-weight: 500;
+  color: #d32f2f;
+}
+
+/* Desktop - مخفی کردن dropdown در desktop */
+@media (min-width: 769px) {
+  .userMenuContainer {
+    display: none !important;
+  }
+}
+

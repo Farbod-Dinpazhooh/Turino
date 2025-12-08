@@ -9,6 +9,7 @@ import SendOTPForm from "./SendOTPForm";
 import CheckOTPForm from "./CheckOTPForm";
 import { useGetUserData } from "@/core/services/queries";
 import Link from "next/link";
+import UserMenu from "../UserMenu";
 import styles from "./AuthForm.module.css";
 
 function AuthForm() {
@@ -31,11 +32,16 @@ function AuthForm() {
     return () => clearInterval(id);
   }, [step, secondsLeft]);
 
-  // اگر کاربر لاگین کرده، شماره موبایلش را نمایش بده
+  // اگر کاربر لاگین کرده
   if (userData) {
     return (
       <div className={styles.auth_container}>
-        <Link href="/profile" className={styles.user_mobile}>
+        {/* Mobile: نمایش UserMenu */}
+        <div className={styles.mobileMenu}>
+          <UserMenu userData={userData} />
+        </div>
+        {/* Desktop: نمایش Link مستقیم */}
+        <Link href="/profile" className={styles.desktopLink}>
           {userData.mobile}
         </Link>
       </div>
@@ -67,10 +73,7 @@ function AuthForm() {
 
   return (
     <div className={styles.auth_container}>
-      <button
-        onClick={() => setIsOpen(true)}
-        className={styles.auth_button}
-      >
+      <button onClick={() => setIsOpen(true)} className={styles.auth_button}>
         ورود | ثبت نام
       </button>
       {step === 1 && (

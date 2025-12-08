@@ -9,6 +9,7 @@ import Image from "next/image";
 import ModalContainer from "../container/ModalContainer";
 import SendOTPForm from "../../templates/AuthForm/SendOTPForm";
 import CheckOTPForm from "../../templates/AuthForm/CheckOTPForm";
+import UserMenu from "../../templates/UserMenu";
 import styles from "./Header.module.css";
 
 function AuthSection() {
@@ -30,12 +31,19 @@ function AuthSection() {
     return () => clearInterval(id);
   }, [step, secondsLeft]);
 
-  // اگر کاربر لاگین کرده، شماره موبایلش را نمایش بده
+  // اگر کاربر لاگین کرده
   if (userData) {
     return (
-      <Link href="/profile" className={styles.user_mobile}>
-        {userData.mobile}
-      </Link>
+      <>
+        {/* Mobile: نمایش UserMenu */}
+        <div className={styles.mobileMenu}>
+          <UserMenu userData={userData} />
+        </div>
+        {/* Desktop: نمایش Link مستقیم */}
+        <Link href="/profile" className={styles.desktopLink}>
+          {userData.mobile}
+        </Link>
+      </>
     );
   }
 

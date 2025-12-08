@@ -2,7 +2,15 @@
 
 import styles from "./ConfirmModal.module.css";
 
-function ConfirmModal({ isOpen, onConfirm, onCancel, title, message }) {
+function ConfirmModal({
+  isOpen,
+  onConfirm,
+  onCancel,
+  title,
+  message,
+  confirmText = "بله",
+  cancelText = "خیر",
+}) {
   if (!isOpen) return null;
 
   return (
@@ -19,13 +27,13 @@ function ConfirmModal({ isOpen, onConfirm, onCancel, title, message }) {
             onClick={onConfirm}
             className={`${styles["modal-btn"]} ${styles.confirm}`}
           >
-            حذف
+            {confirmText}
           </button>
           <button
             onClick={onCancel}
             className={`${styles["modal-btn"]} ${styles.cancel}`}
           >
-            لغو
+            {cancelText}
           </button>
         </div>
       </div>

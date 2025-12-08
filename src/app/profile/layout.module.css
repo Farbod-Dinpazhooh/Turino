@@ -67,6 +67,40 @@
     hue-rotate(76deg) brightness(91%) contrast(89%);
 }
 
+/* Logout Item */
+.logoutItem {
+  color: #d32f2f;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px;
+  flex-direction: row !important;
+}
+
+.logoutItem:hover {
+  background-color: #ffebee !important;
+}
+
+.logoutIcon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.logoutText {
+  color: #d32f2f;
+  font-size: 14px;
+  font-weight: 500;
+  flex: 1;
+  text-align: right;
+  display: block;
+}
+
+.desktopOnly {
+  display: block;
+}
+
 .content {
   flex: 1;
   background: white;
@@ -82,6 +116,7 @@
     flex-direction: column;
     padding: 0;
     gap: 0;
+    overflow: visible;
   }
 
   .sidebar {
@@ -91,11 +126,13 @@
     z-index: 100;
     background: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: visible;
   }
 
   .menu {
     display: flex;
     overflow-x: auto;
+    overflow-y: visible;
     border-radius: 0;
     box-shadow: none;
     border-bottom: 1px solid #e0e0e0;
@@ -152,6 +189,10 @@
 
   .menuItem:last-child {
     border-left: none;
+  }
+
+  .desktopOnly {
+    display: none !important;
   }
 
   .content {
