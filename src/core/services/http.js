@@ -1,6 +1,6 @@
 import QueryString from "qs";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
 
 const serverFetch = async (
   endPoint,
@@ -16,7 +16,6 @@ const serverFetch = async (
     const json = await res.json();
     return json;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error("Server fetch error:", error);
     return false;
   }

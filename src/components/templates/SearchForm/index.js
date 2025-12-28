@@ -11,6 +11,65 @@ import { flattenObject } from "@/core/utils/helpers";
 import { useQuery } from "@/core/hooks/query";
 import styles from "./SearchForm.module.css";
 
+// کامپوننت جداگانه برای DatePicker که می‌تواند از hooks استفاده کند
+function DatePickerWrapper({ onChange, value }) {
+  const datePickerRef = useRef(null);
+
+  useEffect(() => {
+    // تنظیم placeholder به صورت مستقیم روی input element
+    const setPlaceholder = () => {
+      if (datePickerRef.current) {
+        const input = datePickerRef.current.querySelector("input");
+        if (input) {
+          input.setAttribute("placeholder", "تاریخ");
+        }
+      }
+    };
+
+    // تلاش فوری
+    setPlaceholder();
+
+    // تلاش بعد از یک تاخیر کوتاه برای اطمینان از render شدن
+    const timer = setTimeout(setPlaceholder, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className={styles.datepicker_container} ref={datePickerRef}>
+      <DatePicker
+        placeholder="تاریخ"
+        onChange={(e) => {
+          // zaman DatePicker در range mode مقدار را به صورت { from, to } برمی‌گرداند
+          const startDate = e?.from || null;
+          const endDate = e?.to || null;
+
+          if (startDate || endDate) {
+            onChange({
+              startDate: startDate,
+              endDate: endDate,
+            });
+          } else {
+            onChange(null);
+          }
+        }}
+        range
+        value={
+          value &&
+          typeof value === "object" &&
+          !Array.isArray(value) &&
+          (value.startDate || value.endDate)
+            ? {
+                from: value.startDate || null,
+                to: value.endDate || null,
+              }
+            : undefined
+        }
+      />
+    </div>
+  );
+}
+
 // Mapping نام‌های انگلیسی به فارسی
 const cityNameMap = {
   Tehran: "تهران",
@@ -96,7 +155,6 @@ function SearchForm() {
           formValues.date = null;
         }
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error("Error parsing date from URL:", error);
         formValues.date = null;
       }
@@ -319,66 +377,9 @@ function SearchForm() {
           <Controller
             control={control}
             name="date"
-            render={({ field: { onChange, value } }) => {
-              const datePickerRef = useRef(null);
-
-              useEffect(() => {
-                // تنظیم placeholder به صورت مستقیم روی input element
-                const setPlaceholder = () => {
-                  if (datePickerRef.current) {
-                    const input = datePickerRef.current.querySelector("input");
-                    if (input) {
-                      input.setAttribute("placeholder", "تاریخ");
-                    }
-                  }
-                };
-
-                // تلاش فوری
-                setPlaceholder();
-
-                // تلاش بعد از یک تاخیر کوتاه برای اطمینان از render شدن
-                const timer = setTimeout(setPlaceholder, 100);
-
-                return () => clearTimeout(timer);
-              }, []);
-
-              return (
-                <div
-                  className={styles.datepicker_container}
-                  ref={datePickerRef}
-                >
-                  <DatePicker
-                    placeholder="تاریخ"
-                    onChange={(e) => {
-                      // zaman DatePicker در range mode مقدار را به صورت { from, to } برمی‌گرداند
-                      const startDate = e?.from || null;
-                      const endDate = e?.to || null;
-
-                      if (startDate || endDate) {
-                        onChange({
-                          startDate: startDate,
-                          endDate: endDate,
-                        });
-                      } else {
-                        onChange(null);
-                      }
-                    }}
-                    range
-                    value={
-                      value &&
-                      typeof value === "object" &&
-                      !Array.isArray(value) &&
-                      (value.startDate || value.endDate)
-                        ? {
-                            from: value.startDate || null,
-                            to: value.endDate || null,
-                          }
-                        : undefined
-                    }
-                  />
-                </div>
-              );
-            }}
+            render={({ field: { onChange, value } }) => (
+              <DatePickerWrapper onChange={onChange} value={value} />
+            )}
           />
         </div>
         <input type="submit" className={styles.submit_button} value="جستجو" />

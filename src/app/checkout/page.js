@@ -9,6 +9,59 @@ import { useCreateOrder } from "@/core/services/mutation";
 import toast from "react-hot-toast";
 import styles from "./page.module.css";
 
+// کامپوننت جداگانه برای DatePicker که می‌تواند از hooks استفاده کند
+function DatePickerWrapper({ onChange, value, dateInputRef }) {
+  const datePickerRef = useRef(null);
+
+  useEffect(() => {
+    const setPlaceholder = () => {
+      if (datePickerRef.current) {
+        const input = datePickerRef.current.querySelector("input");
+        if (input) {
+          input.setAttribute("placeholder", "yyyy/mm/dd");
+        }
+      }
+    };
+
+    setPlaceholder();
+    const timer = setTimeout(setPlaceholder, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div
+      className={styles.datepicker_container}
+      ref={(node) => {
+        datePickerRef.current = node;
+        if (dateInputRef) {
+          dateInputRef.current = node;
+        }
+      }}
+    >
+      <DatePicker
+        placeholder="yyyy/mm/dd"
+        onChange={(e) => {
+          // DatePicker از zaman یک Date object برمی‌گرداند
+          // آن را مستقیماً نگه دار تا در onSubmit تبدیل کنیم
+          console.log(
+            "DatePicker onChange:",
+            e,
+            "type:",
+            typeof e,
+            "is Date:",
+            e instanceof Date
+          );
+          // اگر e یک Date object است، آن را مستقیماً نگه دار
+          // اگر null یا undefined است، null بفرست
+          onChange(e || null);
+        }}
+        value={value || undefined}
+      />
+      <span className={styles.calendar_icon}>📅</span>
+    </div>
+  );
+}
+
 function CheckoutPage() {
   const router = useRouter();
   const { data: basketData } = useGetUserBasket();
@@ -384,56 +437,13 @@ function CheckoutPage() {
               control={control}
               name="birthDate"
               rules={{ required: "تاریخ تولد الزامی است" }}
-              render={({ field: { onChange, value } }) => {
-                const datePickerRef = useRef(null);
-
-                useEffect(() => {
-                  const setPlaceholder = () => {
-                    if (datePickerRef.current) {
-                      const input =
-                        datePickerRef.current.querySelector("input");
-                      if (input) {
-                        input.setAttribute("placeholder", "yyyy/mm/dd");
-                      }
-                    }
-                  };
-
-                  setPlaceholder();
-                  const timer = setTimeout(setPlaceholder, 100);
-                  return () => clearTimeout(timer);
-                }, []);
-
-                return (
-                  <div
-                    className={styles.datepicker_container}
-                    ref={(node) => {
-                      datePickerRef.current = node;
-                      dateInputRef.current = node;
-                    }}
-                  >
-                    <DatePicker
-                      placeholder="yyyy/mm/dd"
-                      onChange={(e) => {
-                        // DatePicker از zaman یک Date object برمی‌گرداند
-                        // آن را مستقیماً نگه دار تا در onSubmit تبدیل کنیم
-                        console.log(
-                          "DatePicker onChange:",
-                          e,
-                          "type:",
-                          typeof e,
-                          "is Date:",
-                          e instanceof Date
-                        );
-                        // اگر e یک Date object است، آن را مستقیماً نگه دار
-                        // اگر null یا undefined است، null بفرست
-                        onChange(e || null);
-                      }}
-                      value={value || undefined}
-                    />
-                    <span className={styles.calendar_icon}>📅</span>
-                  </div>
-                );
-              }}
+              render={({ field: { onChange, value } }) => (
+                <DatePickerWrapper
+                  onChange={onChange}
+                  value={value}
+                  dateInputRef={dateInputRef}
+                />
+              )}
             />
             {errors.birthDate && (
               <span className={styles.error}>{errors.birthDate.message}</span>
